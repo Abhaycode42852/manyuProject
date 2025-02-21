@@ -18,7 +18,7 @@ const loginUser=async(req,res)=>{
 
         const user=await userModel.findOne({email})
         if (!user) {
-            return res.json({sucess:false,message:"User doen't exists"})
+            return res.json({success:false,message:"User doen't exists"})
         }
 
         const isMatch= await bcrypt.compare(password,user.password)
@@ -26,7 +26,7 @@ const loginUser=async(req,res)=>{
             return res.json({success:false,message:"Inavalid Credentials"})
         }
         const token= createToken(user._id)
-        res.json({sucess:true,token})
+        res.json({success:true,token})
     } catch (error) {
         console.error(error)
         res.json({success:false,message:error.message})
@@ -91,7 +91,7 @@ const adminLogin=async(req,res)=>{
         }
     } catch (error) {
         console.error(error)
-        res.json({sucess:false,message:error.message})
+        res.json({success:false,message:error.message})
     }
 
 }
